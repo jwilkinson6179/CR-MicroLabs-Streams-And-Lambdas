@@ -10,31 +10,35 @@ import java.util.stream.Stream;
 /**
  * Created by leon on 5/25/17.
  */
-public final class StreamConverter extends PersonConversionAgent<Stream<Person>> {
+public final class StreamConverter extends PersonConversionAgent<Stream<Person>>
+{
     private final List<Person> personList;
-    public StreamConverter(Stream<Person> people) {
+
+    public StreamConverter(Stream<Person> people)
+    {
         super(people);
         this.personList = super.objectSequence.collect(Collectors.toList());
     }
 
-    public StreamConverter(int collectionSize) {
+    public StreamConverter(int collectionSize)
+    {
         this(Stream
                 .generate(new PersonFactory()::createRandomPerson)
                 .limit(collectionSize));
     }
 
-    // TODO
-    public List<Person> toList() {
-        return null;
+    public List<Person> toList()
+    {
+        return personList;
     }
 
-    // TODO
-    public Stream<Person> toStream() {
-        return null;
+    public Stream<Person> toStream()
+    {
+        return personList.stream();
     }
 
-    // TODO
-    public Person[] toArray() {
-        return null;
+    public Person[] toArray()
+    {
+        return toStream().toArray(Person[]::new);
     }
 }

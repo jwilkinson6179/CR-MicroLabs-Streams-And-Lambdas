@@ -18,25 +18,32 @@ public class StreamFilter {
 
     /**
      * No arg constructor
-     */ //TODO - construct person stream of 100 person objects; startingCharacter is a random capital letter
-    public StreamFilter() {
-        this(Stream.empty(), null);
+     */
+    public StreamFilter()
+    {
+        this(Stream
+                .generate(new PersonFactory()::createRandomPerson)
+                .limit(100)
+                .collect(Collectors.toList()),
+                RandomUtils.createCharacter('A', 'Z'));
     }
 
     /**
      * @param people - Array of person objects
      * @param startingCharacter - character to filter by
-     */ //TODO
-    public StreamFilter(Person[] people, Character startingCharacter) {
-        this(Stream.empty(), null);
+     */
+    public StreamFilter(Person[] people, Character startingCharacter)
+    {
+        this(Stream.of(people), startingCharacter);
     }
 
     /**
      * @param people - List of person objects
      * @param startingCharacter - character to filter by
-     */ //TODO
-    public StreamFilter(List<Person> people, Character startingCharacter) {
-        this(Stream.empty(), null);
+     */
+    public StreamFilter(List<Person> people, Character startingCharacter)
+    {
+        this(people.stream(), startingCharacter);
     }
 
 
@@ -44,7 +51,8 @@ public class StreamFilter {
      * @param people - Stream of person objects
      * @param startingCharacter - character to filter by
      */ // I took care of the easy constructor (͡° ͜ʖ ͡°)
-    public StreamFilter(Stream<Person> people, Character startingCharacter) {
+    public StreamFilter(Stream<Person> people, Character startingCharacter)
+    {
         this.personStream = people;
         this.startingCharacter = startingCharacter.toString();
     }
@@ -54,7 +62,8 @@ public class StreamFilter {
      * Using multi-line lambda syntax
      * @return a list of person object whose name starts with `this.startingCharacter`
      */ //TODO
-    public List<Person> toListMultiLine() {
+    public List<Person> toListMultiLine()
+    {
         return null;
     }
 
@@ -63,7 +72,8 @@ public class StreamFilter {
      * Using one-line lambda syntax
      * @return a list of person objects whose name starts with `this.startingCharacter`
      */ //TODO
-    public List<Person> toListOneLine() {
+    public List<Person> toListOneLine()
+    {
         return null;
     }
 
@@ -72,7 +82,8 @@ public class StreamFilter {
      * Using one-line lambda syntax
      * @return an array of person object whose name starts with `this.startingCharacter`
      */ //TODO
-    public Person[] toArrayOneLine() {
+    public Person[] toArrayOneLine()
+    {
         return null;
     }
 
@@ -81,7 +92,8 @@ public class StreamFilter {
      * Using multi-line lambda syntax
      * @return an array of person object whose name starts with `this.startingCharacter`
      */ //TODO
-    public Person[] toArrayMultiLine() {
+    public Person[] toArrayMultiLine()
+    {
         return null;
     }
 
