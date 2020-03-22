@@ -25,7 +25,7 @@ public class StreamFilter {
                 .generate(new PersonFactory()::createRandomPerson)
                 .limit(100)
                 .collect(Collectors.toList()),
-                RandomUtils.createCharacter('A', 'Z'));
+            RandomUtils.createCharacter('A', 'Z'));
     }
 
     /**
@@ -61,40 +61,65 @@ public class StreamFilter {
     /**
      * Using multi-line lambda syntax
      * @return a list of person object whose name starts with `this.startingCharacter`
-     */ //TODO
+     */
     public List<Person> toListMultiLine()
     {
-        return null;
+        return personStream.filter(p ->
+            {
+            if(startingCharacter.charAt(0) == p.getName().charAt(0))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        })
+            .collect(Collectors.toList());
     }
 
 
     /**
      * Using one-line lambda syntax
      * @return a list of person objects whose name starts with `this.startingCharacter`
-     */ //TODO
+     */
     public List<Person> toListOneLine()
     {
-        return null;
+        return personStream
+                .filter(p -> startingCharacter.charAt(0) == p.getName().charAt(0))
+                .collect(Collectors.toList());
     }
 
 
     /**
      * Using one-line lambda syntax
      * @return an array of person object whose name starts with `this.startingCharacter`
-     */ //TODO
+     */
     public Person[] toArrayOneLine()
     {
-        return null;
+        return personStream.filter(p ->
+        {
+            if(startingCharacter.charAt(0) == p.getName().charAt(0))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        })
+        .toArray(Person[]::new);
     }
 
 
     /**
      * Using multi-line lambda syntax
      * @return an array of person object whose name starts with `this.startingCharacter`
-     */ //TODO
+     */
     public Person[] toArrayMultiLine()
     {
-        return null;
+        return personStream
+                .filter(p -> startingCharacter.charAt(0) == p.getName().charAt(0))
+                .toArray(Person[]::new);
     }
-
 }
